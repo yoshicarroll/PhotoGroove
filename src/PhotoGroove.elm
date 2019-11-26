@@ -28,20 +28,32 @@ view model =
     div [ class "content" ]
         [ stylesNode
         , h1 [] [ text "Photo Groove!" ]
-        , div [ id "thumbnials" ]
-            (List.map viewThumbnail model)
+        , div [ id "thumbnails" ]
+            (List.map (viewThumbnail model.selectedUrl) model.photos)
+        , img [ class "large", src (urlPrefix ++ "large/" ++ model.selectedUrl) ] []
         ]
 
 
-viewThumbnail thumb =
-    img [ src (urlPrefix ++ thumb.url) ] []
+viewThumbnail selectedUrl thumb =
+    let
+        url =
+            thumb.url
+    in
+    img
+        [ src (urlPrefix ++ url)
+        , classList [ ( "selected", selectedUrl == url ) ]
+        ]
+        []
 
 
 initialModel =
-    [ { url = "1.jpeg" }
-    , { url = "2.jpeg" }
-    , { url = "3.jpeg" }
-    ]
+    { photos =
+        [ { url = "1.jpeg" }
+        , { url = "2.jpeg" }
+        , { url = "3.jpeg" }
+        ]
+    , selectedUrl = "2.jpeg"
+    }
 
 
 main =
