@@ -6,6 +6,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
 
+styles : String
 styles =
     """
 body { background-color: rgb(44, 44, 44); color: white; }
@@ -22,6 +23,7 @@ stylesNode =
     node "style" [] [ text styles ]
 
 
+initialModel : { photos : List { url : String }, selectedUrl : String }
 initialModel =
     { photos =
         [ { url = "1.jpeg" }
@@ -32,6 +34,7 @@ initialModel =
     }
 
 
+urlPrefix : String
 urlPrefix =
     "http://elm-in-action.com/"
 
