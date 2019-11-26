@@ -25,12 +25,22 @@ urlPrefix =
 
 
 view model =
+    let
+        selectedUrl =
+            model.selectedUrl
+
+        photos =
+            model.photos
+
+        thumb =
+            viewThumbnail selectedUrl
+    in
     div [ class "content" ]
         [ stylesNode
         , h1 [] [ text "Photo Groove!" ]
         , div [ id "thumbnails" ]
-            (List.map (viewThumbnail model.selectedUrl) model.photos)
-        , img [ class "large", src (urlPrefix ++ "large/" ++ model.selectedUrl) ] []
+            (List.map thumb photos)
+        , img [ class "large", src (urlPrefix ++ "large/" ++ selectedUrl) ] []
         ]
 
 
