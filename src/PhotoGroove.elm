@@ -20,17 +20,29 @@ stylesNode =
     node "style" [] [ text styles ]
 
 
+urlPrefix =
+    "http://elm-in-action.com/"
+
+
 view model =
     div [ class "content" ]
         [ stylesNode
         , h1 [] [ text "Photo Groove!" ]
         , div [ id "thumbnials" ]
-            [ img [ src "http://elm-in-action.com/1.jpeg" ] []
-            , img [ src "http://elm-in-action.com/2.jpeg" ] []
-            , img [ src "http://elm-in-action.com/3.jpeg" ] []
-            ]
+            (List.map viewThumbnail model)
         ]
 
 
+viewThumbnail thumb =
+    img [ src (urlPrefix ++ thumb.url) ] []
+
+
+initialModel =
+    [ { url = "1.jpeg" }
+    , { url = "2.jpeg" }
+    , { url = "3.jpeg" }
+    ]
+
+
 main =
-    view "no model yet"
+    view initialModel
