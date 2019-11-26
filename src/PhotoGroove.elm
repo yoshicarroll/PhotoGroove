@@ -22,6 +22,16 @@ stylesNode =
     node "style" [] [ text styles ]
 
 
+initialModel =
+    { photos =
+        [ { url = "1.jpeg" }
+        , { url = "2.jpeg" }
+        , { url = "3.jpeg" }
+        ]
+    , selectedUrl = "2.jpeg"
+    }
+
+
 urlPrefix =
     "http://elm-in-action.com/"
 
@@ -57,16 +67,6 @@ view model =
             (List.map thumb photos)
         , img [ class "large", src (urlPrefix ++ "large/" ++ selectedUrl) ] []
         ]
-
-
-initialModel =
-    { photos =
-        [ { url = "1.jpeg" }
-        , { url = "2.jpeg" }
-        , { url = "3.jpeg" }
-        ]
-    , selectedUrl = "2.jpeg"
-    }
 
 
 update msg model =
